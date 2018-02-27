@@ -141,7 +141,7 @@ Anyway we can examine our binary a bit more in detail here.
 In this challenge I used [binary ninja](https://binary.ninja/). 
 Any other tool of your choice will work as well of course.  
 
-![bninja1](https://github.com/0x00rick/reverse_engineering/devil_swapper/images/bninja1.png)  
+![bninja1](https://github.com/0x00rick/reverse_engineering/blob/master/devil_swapper/images/bninja1.png)  
 
 
 We can clearly see that we have a bunch of subroutines and start out with pushing and moving some values which results in the friendly greeting in the main function.
@@ -173,7 +173,7 @@ From here we can investigate the section headers more closely.
 
 > $readelf -S binary
 
-![headers](https://github.com/0x00rick/reverse_engineering/devil_swapper/images/headers.png)  
+![headers](https://github.com/0x00rick/reverse_engineering/blob/master/devil_swapper/images/headers.png)  
 
 
 If we look closely we can find the exact adress of 0x40051d again:
@@ -206,7 +206,7 @@ This swaps exactly these bytes in our binary!
 
 ### Let's take a look at our new binary in binary ninja
 
-![bninja2](https://github.com/0x00rick/reverse_engineering/devil_swapper/images/bninja2.png)  
+![bninja2](https://github.com/0x00rick/reverse_engineering/blob/master/devil_swapper/images/bninja2.png)  
 
 As we can see the graph changed. 
 We avoided the "Keep Trying!" message for now. 
