@@ -28,7 +28,7 @@ bomb: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically link
 
 It's a multi stage binary with 4 phases.
 
-![run]()
+![run](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/run.png)
 
 ## Analysis
 
@@ -87,7 +87,7 @@ So Just convert all these 0x3Y values to ASCII and enter it as a password.
 **Note:** If you're using IDA you can select the hex values and press 'R' to directly convert them in IDA!  
 
 
-![yellow_done]()
+![yellow_done](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/yellow_done.png)
 
 
 ### Phase 2 - Green
@@ -165,7 +165,7 @@ Let's check whats stored at this address:
 
 This looks pretty specific! Another password? Let's check it:
 
-![green_over]()  
+![green_over](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/green_override.png)  
 
 So something is not right here..
 The password is correct but not accepted as is..
@@ -234,7 +234,7 @@ So I decided to take a look at this in IDA.
 I won't show the disassembly here again, since it pretty much looks the same.
 Anyway after I found out I can view the positions of variables of a function on the stack I solved this level.
 
-![ida_stack]()
+![ida_stack](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/stackvars.png)
 
 **Summary**
 
@@ -244,7 +244,7 @@ Anyway after I found out I can view the positions of variables of a function on 
 
 Therefore, if we write 12 bytes into the buffer, the null terminator will overflow into the flag and make it zero!
 
-![green_done]()
+![green_done](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/green_done.png)
 
 
 ### Phase3 - Blue
@@ -338,7 +338,7 @@ This L(eft) and R(ight) thing made me think of something like a node in a tree s
 One thing I learned through research here
 One can create such a custom data structure in IDA with **SHIFT+F9**:
 
-![ida_struct]()  
+![ida_struct](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/node_struct.png)  
 
 Then select the memory address range you want to convert to that newly added data structure and press **ALT+Q**.
 This can organize the disassembly a lot more if needed.
@@ -443,7 +443,7 @@ Basically it is just a python script, which can be directly run in IDA via **ALT
 This outputs a ton of combinations, which I don't wanna copy & paste here.
 One possible solution to finish this phase is 'LLRR'.
 
-![blue_done]()  
+![blue_done](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/blue_done.png)  
 
 
 
@@ -504,7 +504,7 @@ We will be done soon!
 As one can see in the dump above we have a bunch of shift lefts, shift rights as well as and's in there.
 
 
-![pred]()  
+![pred](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/pre_red.png)  
 
 The decompilation of the function looks like this:
 
@@ -554,7 +554,7 @@ We can write a python script to solve this riddle once again:
     KDG3DU32D38EVVXJM64
 
  
-![red_done]()  
+![red_done](https://github.com/0x00rick/reverse_engineering/blob/master/4_color_bomb/images/red_done.png)  
 
 
 
