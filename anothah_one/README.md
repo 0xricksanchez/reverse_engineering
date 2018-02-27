@@ -17,9 +17,9 @@ The steps taken in the following can probably be done in a different order as we
 ## First assessment 
 
 ### Binary format
-Let's take a look at the binary:
+Let's take a look at the binary:  
 
-![file_cmd]()
+![file_cmd](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/file_cmd.png)  
 
 We got a 32-bit [non stripped](https://stackoverflow.com/questions/22682151/difference-between-a-stripped-binary-and-a-non-stripped-binary-in-linux) ELF binary. 
 This sounds okay, since we still have the debugging symbols available.  
@@ -85,7 +85,7 @@ From this first rough assessment we should keep in mind the following facts:
 
 * It's a non stripped ELF binary, putting it in tools like IDA or BinaryNinja will make life easy!
 * We have 3 phases, so 3 flags to find!
-* since it's an ELF binary we could run **readelf -a 0x01 against it to get more information
+* since it's an ELF binary we could run **readelf -a binary** against it to get more information
 
 
 ## Second assessment
@@ -99,7 +99,7 @@ Time for some fun in depth analysis.
 Since we still have all the debugging symbols we can easily navigate through the binary.
 
 
-![main_no_com]()
+![main_no_com](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/main_no_comments.png)
 
 We can clearly see that we have 3 phases with a preceeding **readLine** which will ask for our input to solve the respective phase.
 If we solved everything **win** gets called.
@@ -114,7 +114,7 @@ ______________
 ####Static analysis
 
 
-![phase1]()
+![phase1](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/phase1.png)
 
 Ok what do we see here.
 Some address 0x804b048 is moved into ebp-0xc.
@@ -129,9 +129,9 @@ This phase isn't a big challenge.
 We just have to look how the content that was copied in eax is changed before it get's compared.
 
 
-![p1_in_eax]
+![p1_in_eax](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/p1_binarybomb_in_eax.png)  
 
-![p1_after_changepost]
+![p1_after_changepost](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/p1_after_change.png)  
 
 So we see that the content was "BinaryBomb:(" and it got changed to "=bJd{cBomb:(".
 
@@ -143,10 +143,10 @@ ______________
 
 ### Phase 2
 
-#### Static analysis
+#### Static analysis  
 
 
-![phase2]
+![phase2](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/phase2.png)  
 
 
 So next phase now.. The start is quite unspectacular. 
@@ -268,10 +268,10 @@ ______________
 
 #### Static analysis
 
-So as always let's take a look at the last phase for this binary!
+So as always let's take a look at the last phase for this binary!  
 
 
-![phase3]
+![phase3](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/phase3.png)  
 
 At first glance phase 3 might not look much more difficult compared to phase 2.
 If we look closer we can see another function call this time around though: **sanitize**.
@@ -281,7 +281,7 @@ Also we can identify 2 seperate loops.
 Let's take q quick peak at the **sanitize** function
 
 
-![p3_sanitize]
+![p3_sanitize](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/p3_sanitize.png)  
 
 So first some values are getting moved around, a **strlen** function call follows to get the length of our provided input.
 When returning len(input) is stored in eax. ebx was probably set to 0 before the **strlen** call.
@@ -326,7 +326,7 @@ I set a breakpoint right before entering the first loop.
 
 
 
-![1stloop]
+![1stloop](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/1stloop.png)  
 
 We notice that I provided ABCDefgh as input and abcdefgh is now on the stack and I passed the check against 0x4.
 Our made assumptions earlier were correct up to this point.
@@ -335,7 +335,7 @@ I set another breakpoint at the compare statement:
 
 `0x080489e3	 cmp	eax, dword [ebp-0xc]`
 
-![p3_enter_1st_loop]
+![p3_enter_1st_loop](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/p3_entering_1stloop.png)  
 
 So what do we see here. 
 A bunch of things, just try to follow me :) .
@@ -358,6 +358,8 @@ So in the end it is getting tested if byte n is different from byte n+1.
 If that's the case we finish this loop without a big bang ;) .
 
 So onto the next loop.
+
+![2ndloop](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/2ndloop.png)
 
 I set another breakpoint at the start of it at 0x08048a20
 
@@ -408,7 +410,7 @@ ______________
 
 
 
-![poc]
+![poc](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/solved.png)  
 
 ______________
 
