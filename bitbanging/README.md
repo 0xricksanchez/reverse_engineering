@@ -244,7 +244,7 @@ Let's visualize this with the 2nd input being 3:
 0xd corresponds to 1101 in binary.
 If we do the first `and` operation now we have:
 
-            	1101 (0xd)
+            1101 (0xd)
 	AND	0100 (0x3 +1)
 		_____________
 		0100 (0x4)
