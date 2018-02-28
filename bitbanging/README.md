@@ -25,7 +25,7 @@ We even get feedback about the length, we could bruteforce the length by providi
 Let's take a look at the disassembly instead.
 
 
-![input_length]()
+![input_length](https://github.com/0x00rick/reverse_engineering/blob/master/bitbanging/images/input_length.png)
 
 Okay so we need to provide a number of length 4.  
 If only one input is accepted that leaves us with a 1 in 10^4 probability.
