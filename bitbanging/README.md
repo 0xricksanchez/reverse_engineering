@@ -279,7 +279,7 @@ When we  do the bitwise and between the negative input value and with input+1 we
 
 
 All these inputs result in an EAX of 0x2, which let's us pass the following `and eax, 0x2` and `test eax, eax` check.
-same!
+
 
 
 ## Calculating the 4th input byte!
