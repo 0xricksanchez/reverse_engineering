@@ -244,10 +244,10 @@ Let's visualize this with the 2nd input being 3:
 0xd corresponds to 1101 in binary.
 If we do the first `and` operation now we have:
 
-            		1101 (0xd)
-	AND				0100 (0x3 +1)
-					_____________
-					0100 (0x4)
+            	1101 (0xd)
+	AND	0100 (0x3 +1)
+		_____________
+		0100 (0x4)
 
 So the result for that is 0100. Next up follows `and eax, 0x4`. We can rewrite this as `and 0x4, 0x4`. Why?
 Because the EAX there is the result of bitwise and operation with the negated 2nd input and the 2nd input +1.
