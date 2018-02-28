@@ -272,10 +272,10 @@ For this 3rd input byte
 
 When we  do the bitwise and between the negative input value and with input+1 we get:
 
-	1+1 =   	0010   	2+1 = 		0011  		9+1 = 	 1010
-	    AND 	1111       		AND 1110     		 AND 0111
-	  	  	________     			______      		______
-	   	   		0010        	 	0010        		 0010
+	1+1 =   0010   	           2+1 =    0011  		9+1 = 	 1010
+	    AND 1111       		AND 1110     		     AND 0111
+	  	________     		    ______      		______
+	   	0010        	 	    0010        		 0010
 
 
 All these inputs result in an EAX of 0x2, which let's us pass the following `and eax, 0x2` and `test eax, eax` check.
