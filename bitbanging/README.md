@@ -41,106 +41,106 @@ Let's dig some further into the disassembly.
 		   0x00000000004005fe <+8>:	mov    DWORD PTR [rbp-0x14],edi
 		   0x0000000000400601 <+11>:	mov    QWORD PTR [rbp-0x20],rsi
 		   0x0000000000400605 <+15>:	cmp    DWORD PTR [rbp-0x14],0x2
-		   0x0000000000400609 <+19>:	je     0x40062e <main+56>				# continue if input was provided
+		   0x0000000000400609 <+19>:	je     0x40062e <main+56>			# continue if input was provided
 		   0x000000000040060b <+21>:	mov    rax,QWORD PTR [rbp-0x20]
 		   0x000000000040060f <+25>:	mov    rax,QWORD PTR [rax]
 		   0x0000000000400612 <+28>:	mov    rsi,rax
-		   0x0000000000400615 <+31>:	mov    edi,0x400854						# otherwise load Usage: ... string
+		   0x0000000000400615 <+31>:	mov    edi,0x400854				# otherwise load Usage: ... string
 		   0x000000000040061a <+36>:	mov    eax,0x0
 		   0x000000000040061f <+41>:	call   0x4004c0 <printf@plt>			# print Usage: ... string
 		   0x0000000000400624 <+46>:	mov    edi,0x1
-		   0x0000000000400629 <+51>:	call   0x4004e0 <exit@plt>				# exit binary
+		   0x0000000000400629 <+51>:	call   0x4004e0 <exit@plt>			# exit binary
 		   0x000000000040062e <+56>:	mov    rax,QWORD PTR [rbp-0x20]			# continue execution here if input was provided
 		   0x0000000000400632 <+60>:	add    rax,0x8
-		   0x0000000000400636 <+64>:	mov    rax,QWORD PTR [rax]				# load input into RAX
-		   0x0000000000400639 <+67>:	mov    rdi,rax							# mov input into RDI as calling argument (check x64 ABI!)
+		   0x0000000000400636 <+64>:	mov    rax,QWORD PTR [rax]			# load input into RAX
+		   0x0000000000400639 <+67>:	mov    rdi,rax					# mov input into RDI as calling argument (check x64 ABI!)
 		   0x000000000040063c <+70>:	call   0x4004b0 <strlen@plt>			# call string_length() on our input
-		   0x0000000000400641 <+75>:	cmp    rax,0x4							# check if it has length 4
-		   0x0000000000400645 <+79>:	je     0x40065b <main+101>				# if yes continue execution
-		   0x0000000000400647 <+81>:	mov    edi,0x400865						# otherwise load "Wrongth length!" into EDI
-		   0x000000000040064c <+86>:	call   0x4004a0 <puts@plt>				# print that string
+		   0x0000000000400641 <+75>:	cmp    rax,0x4					# check if it has length 4
+		   0x0000000000400645 <+79>:	je     0x40065b <main+101>			# if yes continue execution
+		   0x0000000000400647 <+81>:	mov    edi,0x400865				# otherwise load "Wrongth length!" into EDI
+		   0x000000000040064c <+86>:	call   0x4004a0 <puts@plt>			# print that string
 		   0x0000000000400651 <+91>:	mov    edi,0x1
-		   0x0000000000400656 <+96>:	call   0x4004e0 <exit@plt>				# end program afterwards
+		   0x0000000000400656 <+96>:	call   0x4004e0 <exit@plt>			# end program afterwards
 		   0x000000000040065b <+101>:	mov    DWORD PTR [rbp-0x4],0x0			# set RBP-0x4 to 0
-		   0x0000000000400662 <+108>:	jmp    0x400690 <main+154>				# continue execution at main+154
+		   0x0000000000400662 <+108>:	jmp    0x400690 <main+154>			# continue execution at main+154
 		   0x0000000000400664 <+110>:	mov    rax,QWORD PTR [rbp-0x20]			# main+110 is here
-		   0x0000000000400668 <+114>:	add    rax,0x8							# pointer to our input
+		   0x0000000000400668 <+114>:	add    rax,0x8					# pointer to our input
 		   0x000000000040066c <+118>:	mov    rdx,QWORD PTR [rax]
 		   0x000000000040066f <+121>:	mov    eax,DWORD PTR [rbp-0x4]			# sets EAX to current loop iteration
 		   0x0000000000400672 <+124>:	cdqe   
 		   0x0000000000400674 <+126>:	add    rax,rdx
-		   0x0000000000400677 <+129>:	movzx  eax,BYTE PTR [rax]				# move first byte of input into RAX (higgest bit)
+		   0x0000000000400677 <+129>:	movzx  eax,BYTE PTR [rax]			# move first byte of input into RAX (higgest bit)
 		   0x000000000040067a <+132>:	movsx  eax,al
-		   0x000000000040067d <+135>:	lea    edx,[rax-0x30]					# loads input into edx
+		   0x000000000040067d <+135>:	lea    edx,[rax-0x30]				# loads input into edx
 		   0x0000000000400680 <+138>:	mov    eax,DWORD PTR [rbp-0x4]
-		   0x0000000000400683 <+141>:	cdqe   									# expands it to a quad word (4bytes to 8bytes)
+		   0x0000000000400683 <+141>:	cdqe   						# expands it to a quad word (4bytes to 8bytes)
 		   0x0000000000400685 <+143>:	mov    DWORD PTR [rax*4+0x601060],edx	# inserts input into an array (see below for visualization)
 		   0x000000000040068c <+150>:	add    DWORD PTR [rbp-0x4],0x1
 		   0x0000000000400690 <+154>:	cmp    DWORD PTR [rbp-0x4],0x3			# main+154 is here!, use RBP-0x4 as loop condition
-		   0x0000000000400694 <+158>:	jle    0x400664 <main+110>				# if it is <=3 jmp to main+110
-		   0x0000000000400696 <+160>:	mov    DWORD PTR [rbp-0x4],0x0			#	continue execution here after array is filled in first loop!
-		   0x000000000040069d <+167>:	jmp    0x4006d8 <main+226>				# directly jump to main+226
+		   0x0000000000400694 <+158>:	jle    0x400664 <main+110>			# if it is <=3 jmp to main+110
+		   0x0000000000400696 <+160>:	mov    DWORD PTR [rbp-0x4],0x0			#continue execution here after array is filled in first loop!
+		   0x000000000040069d <+167>:	jmp    0x4006d8 <main+226>			#directly jump to main+226
 		   0x000000000040069f <+169>:	mov    eax,DWORD PTR [rbp-0x4]			# main+169 is here.
 		   0x00000000004006a2 <+172>:	cdqe   
 		   0x00000000004006a4 <+174>:	mov    eax,DWORD PTR [rax*4+0x601060]	# load an input byte depending on loop iteration into EAX
 		   0x00000000004006ab <+181>:	test   eax,eax
-		   0x00000000004006ad <+183>:	js     0x4006c0 <main+202>				# pre emptive loop exit if test input_byte,input_byte fails
+		   0x00000000004006ad <+183>:	js     0x4006c0 <main+202>			# pre emptive loop exit if test input_byte,input_byte fails
 		   0x00000000004006af <+185>:	mov    eax,DWORD PTR [rbp-0x4]			# otherwise load loop counter into EAXeax
 		   0x00000000004006b2 <+188>:	cdqe   
 		   0x00000000004006b4 <+190>:	mov    eax,DWORD PTR [rax*4+0x601060]	# load current input_byte into EAX again
-		   0x00000000004006bb <+197>:	cmp    eax,0x9							# compare if it to 9 
-		   0x00000000004006be <+200>:	jle    0x4006d4 <main+222>				# if it is <= 9 (meaning it is a number!) continue loop
-		   0x00000000004006c0 <+202>:	mov    edi,0x400873						# otherwise move "The key has to be a number!" into edo
-		   0x00000000004006c5 <+207>:	call   0x4004a0 <puts@plt>				# print that string
+		   0x00000000004006bb <+197>:	cmp    eax,0x9					# compare if it to 9 
+		   0x00000000004006be <+200>:	jle    0x4006d4 <main+222>			# if it is <= 9 (meaning it is a number!) continue loop
+		   0x00000000004006c0 <+202>:	mov    edi,0x400873				# otherwise move "The key has to be a number!" into edo
+		   0x00000000004006c5 <+207>:	call   0x4004a0 <puts@plt>			# print that string
 		   0x00000000004006ca <+212>:	mov    edi,0x1
-		   0x00000000004006cf <+217>:	call   0x4004e0 <exit@plt>				# and exit the binary 
+		   0x00000000004006cf <+217>:	call   0x4004e0 <exit@plt>			# and exit the binary 
 		   0x00000000004006d4 <+222>:	add    DWORD PTR [rbp-0x4],0x1			# add +1 to loop counter and continue loop at main+226
 		   0x00000000004006d8 <+226>:	cmp    DWORD PTR [rbp-0x4],0x3			# main+226 is here another loop condition check with 3 iterations
-		   0x00000000004006dc <+230>:	jle    0x40069f <main+169>				# if iteration <= 3 jump to main+168
+		   0x00000000004006dc <+230>:	jle    0x40069f <main+169>			# if iteration <= 3 jump to main+168
 		   0x00000000004006de <+232>:	mov    eax,DWORD PTR [rip+0x20097c]        # 0x601060 <array>	# if all 4 bytes are verified as numbers MSB is loaded into EAX
-		   0x00000000004006e4 <+238>:	cmp    eax,0x5							# and compared to 0x5 
-		   0x00000000004006e7 <+241>:	jne    0x4007b6 <main+448>				# if its not equal to 0x5 we jump to main+448, meaning our first digit should be a 5!
+		   0x00000000004006e4 <+238>:	cmp    eax,0x5					# and compared to 0x5 
+		   0x00000000004006e7 <+241>:	jne    0x4007b6 <main+448>			# if its not equal to 0x5 we jump to main+448, meaning our first digit should be a 5!
 		   0x00000000004006ed <+247>:	mov    eax,DWORD PTR [rip+0x200971]        # 0x601064 <array+4>		# load second input byte into EAX
-		   0x00000000004006f3 <+253>:	neg    eax								# negate EAX, meaning: 0 - EAX and put the result into EAX
-		   0x00000000004006f5 <+255>:	mov    edx,eax							# move that value into EDX
+		   0x00000000004006f3 <+253>:	neg    eax					# negate EAX, meaning: 0 - EAX and put the result into EAX
+		   0x00000000004006f5 <+255>:	mov    edx,eax					# move that value into EDX
 		   0x00000000004006f7 <+257>:	mov    eax,DWORD PTR [rip+0x200967]        # 0x601064 <array+4>		# load 2nd input byte into EAX again
-		   0x00000000004006fd <+263>:	add    eax,0x1							# add 1 on our 2nd input byte
-		   0x0000000000400700 <+266>:	and    eax,edx							# to a bitwise AND with the negative of our 2nd input byte and our 2nd input byte+1 (check below!)
-		   0x0000000000400702 <+268>:	and    eax,0x4							# do another bitewise and of the prior result with 0x4
+		   0x00000000004006fd <+263>:	add    eax,0x1					# add 1 on our 2nd input byte
+		   0x0000000000400700 <+266>:	and    eax,edx					# to a bitwise AND with the negative of our 2nd input byte and our 2nd input byte+1 (check below!)
+		   0x0000000000400702 <+268>:	and    eax,0x4					# do another bitewise and of the prior result with 0x4
 		   0x0000000000400705 <+271>:	test   eax,eax						
-		   0x0000000000400707 <+273>:	je     0x4007a2 <main+428>				# jumps if TEST EAX, EAX results in a set zero flag
+		   0x0000000000400707 <+273>:	je     0x4007a2 <main+428>			# jumps if TEST EAX, EAX results in a set zero flag
 		   0x000000000040070d <+279>:	mov    eax,DWORD PTR [rip+0x200955]        # 0x601068 <array+8> 		# load 3rd input byte
-		   0x0000000000400713 <+285>:	cmp    eax,0x6							# compare it to 6
-		   0x0000000000400716 <+288>:	je     0x40078e <main+408>				# if is equal to 6 goto a bad exit, so 3rd input has to be !=6
+		   0x0000000000400713 <+285>:	cmp    eax,0x6					# compare it to 6
+		   0x0000000000400716 <+288>:	je     0x40078e <main+408>			# if is equal to 6 goto a bad exit, so 3rd input has to be !=6
 		   0x0000000000400718 <+290>:	mov    eax,DWORD PTR [rip+0x20094a]        # 0x601068 <array+8> load 3rd input byte again
-		   0x000000000040071e <+296>:	cmp    eax,0x5							# check against 5
-		   0x0000000000400721 <+299>:	je     0x40078e <main+408>				# if its equal to 5 goto a bad exit again, so it has to be !=5 too!
+		   0x000000000040071e <+296>:	cmp    eax,0x5					# check against 5
+		   0x0000000000400721 <+299>:	je     0x40078e <main+408>			# if its equal to 5 goto a bad exit again, so it has to be !=5 too!
 		   0x0000000000400723 <+301>:	mov    eax,DWORD PTR [rip+0x20093f]        # 0x601068 <array+8>		# load 3rd input byte
-		   0x0000000000400729 <+307>:	neg    eax								# oh its the same routine as above!
+		   0x0000000000400729 <+307>:	neg    eax					# oh its the same routine as above!
 		   0x000000000040072b <+309>:	mov    edx,eax
 		   0x000000000040072d <+311>:	mov    eax,DWORD PTR [rip+0x200935]        # 0x601068 <array+8>
 		   0x0000000000400733 <+317>:	add    eax,0x1
 		   0x0000000000400736 <+320>:	and    eax,edx
-		   0x0000000000400738 <+322>:	and    eax,0x2							# just this time we need to make sure it passes the and eax, 0x2 followed by a test
+		   0x0000000000400738 <+322>:	and    eax,0x2					# just this time we need to make sure it passes the and eax, 0x2 followed by a test
 		   0x000000000040073b <+325>:	test   eax,eax
 		   0x000000000040073d <+327>:	je     0x40078e <main+408>
 		   0x000000000040073f <+329>:	mov    eax,DWORD PTR [rip+0x200927]        # 0x60106c <array+12>		load 4th input byte 
-		   0x0000000000400745 <+335>:	cmp    eax,0x8							# compare it to 8
-		   0x0000000000400748 <+338>:	je     0x40077a <main+388>				# bad exit if it is 8, so it has to be !=8 
+		   0x0000000000400745 <+335>:	cmp    eax,0x8					# compare it to 8
+		   0x0000000000400748 <+338>:	je     0x40077a <main+388>			# bad exit if it is 8, so it has to be !=8 
 		   0x000000000040074a <+340>:	mov    eax,DWORD PTR [rip+0x20091c]        # 0x60106c <array+12>	# and to make it more annoying another check for the 4th byte
-		   0x0000000000400750 <+346>:	neg    eax								# again the same routine 
+		   0x0000000000400750 <+346>:	neg    eax					# again the same routine 
 		   0x0000000000400752 <+348>:	mov    edx,eax
 		   0x0000000000400754 <+350>:	mov    eax,DWORD PTR [rip+0x200912]        # 0x60106c <array+12>
 		   0x000000000040075a <+356>:	add    eax,0x1
 		   0x000000000040075d <+359>:	and    eax,edx
-		   0x000000000040075f <+361>:	and    eax,0x8							# just another test condition again
+		   0x000000000040075f <+361>:	and    eax,0x8					# just another test condition again
 		   0x0000000000400762 <+364>:	test   eax,eax
 		   0x0000000000400764 <+366>:	je     0x40077a <main+388>
-		   0x0000000000400766 <+368>:	mov    edi,0x40088f						# This one is the congrats message and the desired exit
+		   0x0000000000400766 <+368>:	mov    edi,0x40088f				# This one is the congrats message and the desired exit
 		   0x000000000040076b <+373>:	call   0x4004a0 <puts@plt>
 		   0x0000000000400770 <+378>:	mov    edi,0x0
-		   0x0000000000400775 <+383>:	call   0x4004e0 <exit@plt>				# until here
-		   0x000000000040077a <+388>:	mov    edi,0x40089d					# Everything from here and below are "bad exits" we want to avoid!
+		   0x0000000000400775 <+383>:	call   0x4004e0 <exit@plt>			# until here
+		   0x000000000040077a <+388>:	mov    edi,0x40089d				# Everything from here and below are "bad exits" we want to avoid!
 		   0x000000000040077f <+393>:	call   0x4004a0 <puts@plt>
 		   0x0000000000400784 <+398>:	mov    edi,0x1
 		   0x0000000000400789 <+403>:	call   0x4004e0 <exit@plt>
