@@ -1,0 +1,9 @@
+The task here is pretty simple. 
+The comparison and xoring that takes place is always between a weird byte chunk of an calculated address from EAX and a fixed
+value from EDX. 
+It's our task to determine ECX which is our inputbyte for that particular loop step.
+we can simply calculate the inverse xor which is xor again!
+
+-> print(hex(EAX ^ EDX))
+this yields ecx in hex just convert it to ascii to get the input character
+->bytes.fromhex('hexvalue').decode('utf-8')
