@@ -24,7 +24,7 @@ I think the picture says it all already.
 ### check password
 
 
-![passwd1](https://github.com/0x00rick/reverse_engineering/blob/master/re_100/images/passwd.png)
+![passwd1](https://github.com/0x00rick/reverse_engineering/blob/master/re_100/images/passwd1.png)
 
 
 
@@ -33,6 +33,7 @@ This is our provided input from `rdi` into `[rbp-0x38]`, as well as 3 weird/encr
 
 
 ![passwd2](https://github.com/0x00rick/reverse_engineering/blob/master/re_100/images/passwd2.png)
+![passwd3](https://github.com/0x00rick/reverse_engineering/blob/master/re_100/images/passwd3.png)
 
 Here in big part the fun happens.
 First we have  initialize a loop counter to 0 and check if it is below 0xb (11).
