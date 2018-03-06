@@ -27,6 +27,9 @@ If we pass that check a function called `parell` is called with our input as the
 
 In the parell function, the program reads the user input as a whole integer. Once the input string contains other symbols rather than digits, it will output “incorrect password”.
 
+That being the case because in case `sscanf` has successfully read `%d` and nothing else, it would return 1 (one parameter has been assigned).  
+If there were characters before a number, it would return 0 (no paramters were assigned since it was required to find an integer first which was not present). If there was an integer with additional characters, it would return 2 as it was able to assign both parameters.
+
 
 
 	$ ./crackme0x05 
