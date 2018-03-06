@@ -24,7 +24,7 @@ It still has the same `0x00052b24` calculation in there, just right afterwards a
 In the test function you're encountered with a compare statement followed by a split control flow, depending on the result.
 The present strings do not make much sense, but you can still solve it without knowing what they mean.
 
-![test](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x02/images/test.png)
+![test](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x03/images/test.png)
 
 **Why is that?**
 
@@ -39,7 +39,7 @@ Right after the split control flow in `test` a function called `shift` is called
 
 So lets take a look at this function.
 
-![shift](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x02/images/shift.png)
+![shift](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x03/images/shift.png)
 
 Basically what it comes down to is that here the `string_length` function is called with one of these weird strings as an argument.
 The next steps can be summarized as follows:
