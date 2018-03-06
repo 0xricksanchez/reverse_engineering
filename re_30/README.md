@@ -1,4 +1,4 @@
-##binary 
+## binary 
 
 
 	$ file re3022 
