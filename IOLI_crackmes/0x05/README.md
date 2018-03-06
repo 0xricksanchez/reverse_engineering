@@ -23,7 +23,7 @@ The check function is similar built compared to before.
 Just this time the sum of the user input check against 0x10 (16) instead of 0xf (15).
 If we pass that check a function called `parell` is called with our input as the function argument.
 
-![parell](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x04/images/parell.png)
+![parell](https://github.com/0x00rick/reverse_engineering/blob/master/IOLI_crackmes/0x05/images/parell.png)
 
 In the parell function, the program reads the user input as a whole integer. Once the input string contains other symbols rather than digits, it will output “incorrect password”.
 
