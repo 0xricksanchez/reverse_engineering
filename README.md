@@ -1,7 +1,7 @@
 # README
-In here you can find a random collection binaries from challenges, forums, ctfs meant to be reverse engineered.  
+In here you can find a random collection of binaries from challenges, forums, ctfs meant to be reverse engineered.  
 
-The write ups are meant to be a personal learning experience and include a .bndb file for BinaryNinja.  
+The write ups were originally meant to be a personal learning experience only and include a .bndb file for BinaryNinja.  
 
-Feel free to reach out to me for errors, or in the rare case if you should have questions :)
+Feel free to reach out if you catch any errors, or in the rare case when having questions :).
 
