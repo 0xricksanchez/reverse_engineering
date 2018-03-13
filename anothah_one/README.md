@@ -111,7 +111,7 @@ This function prepares the ASCII art which is shown to us in the beginning.
 >It's a gigantic question mark made out of M's if anyone was wondering/interested
 ______________
 ### Phase 1
-####Static analysis
+#### Static analysis
 
 
 ![phase1](https://github.com/0x00rick/reverse_engineering/blob/master/anothah_one/images/phase1.png)
