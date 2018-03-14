@@ -21,7 +21,7 @@ Up until now it is unsure whether or not the binary takes any input from the use
 
 ## disassembly
 
-![main](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/main1.png)
+![main](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/main1.png)
 
 The function prologue in main makes clear there is no interaction with user input whatsoever.
 Our only hint so far is still the 20 char long garbage output.
@@ -40,18 +40,18 @@ This is a new indicator that the real flag has a length of 35 characters.
 So let us first check where the function argument values are taken from:
 
 
-![func_args](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/func_args.png)
+![func_args](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/func_args.png)
 
 The snipped shows these values are stored starting from address `0x804b050`. The last value is stored at `0x804b144`.
 Next let us take a look at the called function.
 
-![switchy](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/switchy.png)
+![switchy](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/switchy.png)
 
 The picture shows that this function has a not a lot of depth, but a wide spread in control flow, meaning there is not too much going on once one path was taken.
 
 **ENHANCE**
 
-![switchy_calc](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/switchy_calc.png)
+![switchy_calc](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/switchy_calc.png)
 
 The function takes its function argument and first substracts `0x14` from it. Then prepares the stack as seen in the screenshot.
 The `ja` is never taken so control flow always ends up at `0x804848d`.
@@ -65,13 +65,13 @@ The value in EAX is used to determine the contents of ECX by doing:
 
 This resulting value in ECX is taken for control flow redirection via `jmp ECX`.
 	
-![jumpy](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/jumpy.png)
+![jumpy](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/jumpy.png)
 
 The whole jump table can be seen in the `.rodata` section defining every jump for all 20 cases.
 
 One example for the first taken jump is the following:
 
-![example_case](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/example_case.png)
+![example_case](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/example_case.png)
 
 All cases are all structured the same way.
 
@@ -115,12 +115,12 @@ So what is the solution/password/flag??
 Let's take a closer look at the values taken for the xor operations.
 These are located in the `.data` section of the binary and are neatly placed one after another.
 
-![xor1](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/xor_vals1.png)
+![xor1](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/xor_vals1.png)
 
 The hex values may not look not like anything valuable, except the obvious weirdness of the negative ones!
 So what about the ascii representation?
 
-![xor2](https://github.com/0x00rick/reverse_engineering/blob/master/switchy/images/xor_vals2.png)
+![xor2](https://github.com/0x00rick/reverse_engineering/blob/master/Switchy/images/xor_vals2.png)
 
 We can see a bunch of them have a valid ascii representation, but the current order does not make any sense...
 
