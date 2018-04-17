@@ -1,7 +1,9 @@
 # DISCLAIMER
 
-All future updates will be published on my blog https://0x00rick.github.io/ !  
-Feel to visit and check out if there is any new content.
+All future updates will be published on my blog http://www.0x00rick.com !  
+Feel free to visit and check out if there is any new content.
+Feedback is highly appreciated.  
+Content requests are encouraged too :)!  
 
 
 # README
